@@ -35,11 +35,13 @@ extracts and sums the values contained in the Python list object. Finally, the s
 the identified values is returned. 
 
 To run the Flask application locally use the following command:
+
 `python app/app.py`
 
 Now that the Flask application is up and running you can use the following curl command 
 to POST some data to the Flask application. The Flask application should be visible via 
 port 5000 on the host network of your local machine (i.e. localhost). 
+
 `curl -X POST -d '{"data": ["1", "2"]}' http://localhost:5000`
 
 ### Docker
@@ -61,18 +63,22 @@ Once the Dockerfile has been created it is now possible to build a Docker image 
 create a Docker container running the Flask application. Docker build simply executes 
 sequentially the commands contained in the Dockerfile to create a Docker image. To build 
 the Docker image of the name `flask_app:latest`, use the following command:
+
 `docker build . -t "flask_app:latest"`
 
 Once the docker image has finished building (which may take some time), it is possible 
 to create and run a Docker container. To create a Docker container based on the Docker 
 image mentioned above use the following command:
+
 `docker run -d -p 5000:5000 flask_app:latest`
+
 The above command connects port 5000 of the local machine with port 5000 of the Docker 
 container, therefore, allowing commands to be passed to the container via port 5000.
 
 Now that the Docker container is up and running it is possible to post some data to it 
 and see what it returns. To execute the Flask application through the Docker container 
 use the following command: 
+
 `curl -X POST -d '{"data": ["1", "2"]}' http://localhost:5000`
 
 ### Vagrant
@@ -96,11 +102,14 @@ automatically installs Docker, builds the docker image (as defined in the Docker
 and configures the Flask application container to run on boot of the virtual machine. 
 
 To build the virtual machine using the following command (this may take a few minutes):
+
 `vagrant up`
 
 One can post data to the Docker container running within the virtual machine using the 
 following command:
+
 `curl -X POST -d '{"data": ["1", "2"]}' http://127.0.0.1:5000`
+
 The virtual machine is defined to only be accessible via port 5000 of the IP `127.0.0.1`. 
 Therefore, to pass the POST request to the Flask application the POST request is passed 
 to port 5000 of the local machine which forwards the request to port 5000 of the virtual 
